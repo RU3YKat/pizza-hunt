@@ -4,6 +4,11 @@ const pizzaController = {
     // get all pizzas
     getAllPizza(req, res) {
         Pizza.find({})
+        .populate({
+            path: 'comments',
+            select: '-__v'
+        })
+        .select('-__v')
         .then(dbPizzaData => res.json(dbPizzaData))
         .catch(err => {
             console.log(err);
@@ -32,7 +37,7 @@ const pizzaController = {
     createPizza({ body }, res) {
         Pizza.create(body)
         .then(dbPizzaData => res.json(dbPizzaData))
-        .catch(err => res.statu(400).json(err));
+        .catch(err => res.status(400).json(err));
     },
 
     // update pizza by id
