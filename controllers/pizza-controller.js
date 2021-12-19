@@ -5,10 +5,14 @@ const pizzaController = {
     getAllPizza(req, res) {
         Pizza.find({})
         .populate({
+            // .populate method should contain an object w property of path, to refer to the field that should be populated
             path: 'comments',
+            // do not return __v field in comments
             select: '-__v'
         })
         .select('-__v')
+        // sort in DESC order by _id value (here is timestamp)
+        .sort({ _id: -1 })
         .then(dbPizzaData => res.json(dbPizzaData))
         .catch(err => {
             console.log(err);
