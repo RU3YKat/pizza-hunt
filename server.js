@@ -18,3 +18,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/pizza-hun
 mongoose.set('debug', true);
 
 app.listen(PORT, () => console.log(`🌍 Connected on localhost:${PORT}`));
+
+
+// app deployed on Heroku via MongoDB Atlas at: 
+// https://vast-springs-06005.herokuapp.com/
